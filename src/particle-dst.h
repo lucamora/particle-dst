@@ -19,6 +19,8 @@ class DST
     int beginning;
     int end;
     int timestamp(dst_limit_t limit);
+                        // j   f   m   a   m   j   j   a   s   o   n   d
+    const int DAYS[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 };
 
 #endif

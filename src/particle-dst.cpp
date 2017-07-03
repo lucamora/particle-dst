@@ -56,7 +56,18 @@ int DST::timestamp(dst_limit_t limit)
   int first_occurrence = (6 + limit.day - first_of_month.tm_wday) % 7;
   Serial.printlnf("first of month: %d | first occurrence: %d", first_of_month.tm_wday, first_occurrence);
 
-  int weeks = limit.occurrence - 1;
+  int weeks;
+  // check if occurrence from beginning or from end of the month
+  if (limit.occurrence > 0) {
+    weeks = limit.occurrence - 1;
+  }
+  else {
+    // find days until the requested occurrence
+    int from_end = (abs(limit.occurrence) - 1) * 7;
+
+    // calculate number of weeks in the month
+    weeks = round((DAYS[limit.month - 1] - 1 - first_occurrence - from_end) / 7);
+  }
 
   // seconds added to the first of month to get to the requested occurrence
   return ts + ((first_occurrence + (weeks * 7)) * 24 * 3600);
