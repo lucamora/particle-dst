@@ -52,12 +52,12 @@ int DST::timestamp(dst_limit_t limit)
   ts = mktime(&first_of_month);
 
 
-  // number of days until the first occurence
-  int first_occurence = (6 + limit.day - first_of_month.tm_wday) % 7;
-  Serial.printlnf("first of month: %d | first occurence: %d", first_of_month.tm_wday, first_occurence);
+  // number of days until the first occurrence
+  int first_occurrence = (6 + limit.day - first_of_month.tm_wday) % 7;
+  Serial.printlnf("first of month: %d | first occurrence: %d", first_of_month.tm_wday, first_occurrence);
 
-  int weeks = limit.occurence - 1;
+  int weeks = limit.occurrence - 1;
 
-  // seconds added to the first of month to get to the requested occurence
-  return ts + ((first_occurence + (weeks * 7)) * 24 * 3600);
+  // seconds added to the first of month to get to the requested occurrence
+  return ts + ((first_occurrence + (weeks * 7)) * 24 * 3600);
 }

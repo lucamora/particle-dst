@@ -7,7 +7,7 @@ typedef struct
   int hour;
   int day;
   int month;
-  int occurence;
+  int occurrence;
 } dst_limit_t;
 
 class DST
