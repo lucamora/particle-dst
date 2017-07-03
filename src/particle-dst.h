@@ -13,7 +13,7 @@ typedef struct
 class DST
 {
   public:
-    void init(dst_limit_t beginning_limit, dst_limit_t end_limit, int offset);
+    void begin(dst_limit_t beginning_limit, dst_limit_t end_limit, int offset);
     bool check();
   private:
     int beginning;

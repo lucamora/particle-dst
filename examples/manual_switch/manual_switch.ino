@@ -18,7 +18,7 @@ void setup() {
   end.month = 10;
   end.occurrence = 2;
 
-  dst.init(beginning, end, 1);
+  dst.begin(beginning, end, 1);
 }
 
 void loop() {

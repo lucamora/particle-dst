@@ -1,6 +1,6 @@
 #include "particle-dst.h"
 
-void DST::init(dst_limit_t beginning_limit, dst_limit_t end_limit, int offset)
+void DST::begin(dst_limit_t beginning_limit, dst_limit_t end_limit, int offset)
 {
   // calculate timestamps of beginning and end limits
   beginning = timestamp(beginning_limit);
