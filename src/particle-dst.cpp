@@ -2,9 +2,9 @@
 
 void DST::begin(dst_limit_t beginning_limit, dst_limit_t end_limit, int offset)
 {
-  // calculate timestamps of beginning and end limits
-  beginning = timestamp(beginning_limit);
-  end = timestamp(end_limit);
+  // save beginning and end limits
+  beginning_l = beginning_limit;
+  end_l = end_limit;
 
   // set DST offset
   Time.setDSTOffset(offset);
@@ -17,6 +17,10 @@ bool DST::check()
     // needed to compare local time
     Time.endDST();
   }
+
+  int now = Time.local();
+  int beginning = timestamp(beginning_l);
+  int end = timestamp(end_l);
 
   Serial.printlnf("beginning: %d\nend: %d\nnow: %d", beginning, end, Time.local());
 
