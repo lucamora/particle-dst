@@ -22,26 +22,40 @@ bool DST::check()
 
   if (Time.isDST()) {
     // disable DST to avoid problems
-    // needed to compare local time
+    // needed to compare limits with local time
     Time.endDST();
   }
 
   int now = Time.local();
+  // calculate beginning and end limits
   int beginning = timestamp(beginning_l);
   int end = timestamp(end_l);
 
-  Serial.printlnf("beginning: %d\nend: %d\nnow: %d", beginning, end, Time.local());
+  Serial.printlnf("beginning: %d\nend: %d\nnow: %d", beginning, end, now);
 
-  if (Time.local() >= beginning && Time.local() < end) {
-    // now is DST so enable DST mode
-    Time.beginDST();
-    Serial.println("DST: on");
-    return true;
+  // check if beginning and end are in the same year
+  if (beginning < end) {
+    // DST starts and ends in the same year
+    if (now >= beginning && now < end) {
+      // now is DST so enable DST mode
+      Time.beginDST();
+      Serial.println("DST: on");
+      return true;
+    }
   }
+  // or beginning is in a year and end is in the next one
   else {
-    Serial.println("DST: off");
-    return false;
+    // DST ends next year or has started last year
+    if (now >= beginning || now < end) {
+      // now is DST so enable DST mode
+      Time.beginDST();
+      Serial.println("DST: on");
+      return true;
+    }
   }
+
+  Serial.println("DST: off");
+  return false;
 }
 
 int DST::timestamp(dst_limit_t limit)
