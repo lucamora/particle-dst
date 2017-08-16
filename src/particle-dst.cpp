@@ -12,6 +12,14 @@ void DST::begin(dst_limit_t beginning_limit, dst_limit_t end_limit, int offset)
 
 bool DST::check()
 {
+  if (!Time.isValid()) {
+    Serial.println("[TIME]: time not synced");
+    // if time is not valid, sync it
+    Particle.syncTime();
+    Serial.println("[TIME]: syncing time");
+    waitUntil(Particle.syncTimeDone);
+  }
+
   if (Time.isDST()) {
     // disable DST to avoid problems
     // needed to compare local time
