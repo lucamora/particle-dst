@@ -8,6 +8,24 @@ void DST::begin(dst_limit_t beginning_limit, dst_limit_t end_limit, int offset)
 
   // set DST offset
   Time.setDSTOffset(offset);
+
+  // create timer for automatic switching
+  timer = new Timer(3600 * 1000, &DST::auto_check, *this);
+}
+
+void DST::automatic(bool enable)
+{
+  if (enable) {
+    timer->start();
+  }
+  else {
+    timer->stop();
+  }
+}
+
+void DST::auto_check()
+{
+  check();
 }
 
 bool DST::check()

@@ -15,10 +15,13 @@ class DST
   public:
     void begin(dst_limit_t beginning_limit, dst_limit_t end_limit, int offset);
     bool check();
+    void automatic(bool enable);
   private:
     dst_limit_t beginning_l;
     dst_limit_t end_l;
     int timestamp(dst_limit_t limit);
+    Timer *timer;
+    void auto_check();
                         // j   f   m   a   m   j   j   a   s   o   n   d
     const int DAYS[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 };
