@@ -31,10 +31,8 @@ void DST::auto_check()
 bool DST::check()
 {
   if (!Time.isValid()) {
-    Serial.println("[TIME]: time not synced");
     // if time is not valid, sync it
     Particle.syncTime();
-    Serial.println("[TIME]: syncing time");
     waitUntil(Particle.syncTimeDone);
   }
 
@@ -49,15 +47,12 @@ bool DST::check()
   int beginning = timestamp(beginning_l);
   int end = timestamp(end_l);
 
-  Serial.printlnf("beginning: %d\nend: %d\nnow: %d", beginning, end, now);
-
   // check if beginning and end are in the same year
   if (beginning < end) {
     // DST starts and ends in the same year
     if (now >= beginning && now < end) {
       // now is DST so enable DST mode
       Time.beginDST();
-      Serial.println("DST: on");
       return true;
     }
   }
@@ -67,12 +62,10 @@ bool DST::check()
     if (now >= beginning || now < end) {
       // now is DST so enable DST mode
       Time.beginDST();
-      Serial.println("DST: on");
       return true;
     }
   }
 
-  Serial.println("DST: off");
   return false;
 }
 
@@ -123,10 +116,8 @@ int DST::timestamp(dst_limit_t limit)
   // calculate timestamp of the first day of the month
   ts = mktime(&first_of_month);
 
-
   // number of days until the first occurrence
   int first_occurrence = (6 + limit.day - first_of_month.tm_wday) % 7;
-  Serial.printlnf("first of month: %d | first occurrence: %d", first_of_month.tm_wday, first_occurrence);
 
   int weeks;
   // check if occurrence from beginning or from end of the month
