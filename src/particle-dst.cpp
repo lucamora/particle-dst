@@ -76,6 +76,34 @@ bool DST::check()
   return false;
 }
 
+int DST::beginning()
+{
+  return timestamp(beginning_l);
+}
+
+char* DST::beginning(String format)
+{
+  return format_limit(beginning_l, format);
+}
+
+int DST::end()
+{
+  return timestamp(end_l);
+}
+
+char* DST::end(String format)
+{
+  return format_limit(end_l, format);
+}
+
+char* DST::format_limit(dst_limit_t limit, String format)
+{
+  String s = Time.format(timestamp(limit), format);
+  buf = new char[s.length() + 1];
+  s.toCharArray(buf, s.length() + 1);
+  return buf;
+}
+
 int DST::timestamp(dst_limit_t limit)
 {
   time_t ts; //timestamp

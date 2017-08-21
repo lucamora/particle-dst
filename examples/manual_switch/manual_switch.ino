@@ -26,6 +26,9 @@ void setup() {
   end.occurrence = 2;
 
   dst.begin(beginning, end, 1);
+
+  Serial.printlnf("Beginning: %d, end: %d", dst.beginning(), dst.end());
+  Serial.printlnf("Beginning: %s, end: %s", dst.beginning("%a, %d %B @ %R"), dst.end("%a, %d %B @ %R"));
 }
 
 void loop() {
