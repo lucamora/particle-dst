@@ -2,7 +2,7 @@
 DST switching made simple!
 
 ## What is it?
-Particle-dst is a simple Particle library that can be used to switch manually or automatically DST all over the world on Partcle devices!
+Particle-dst is a simple Particle library that can be easily used to switch manually or automatically DST all over the world on Particle devices!
 
 ## Installation
 Particle-dst is easy to install because it is a normal Particle library.
@@ -21,18 +21,18 @@ particle library add particle-dst
 ### Web IDE ([Build](https://build.particle.io))
 1. Select your project or create a new one
 2. Click on `Libraries` in the left sidebar
-3. In the search field type `dst`
+3. In the search field type: `dst`
 4. Select `particle-dst`
 5. Click on `ÌNCLUDE IN PROJECT`
 
 ### Desktop IDE ([Dev](https://www.particle.io/products/development-tools/particle-desktop-ide))
 1. Select your project or create a new one
 2. Click on `Browse and manage Particle libraries` in the left sidebar
-3. In the search field type `dst`
+3. In the search field type: `dst`
 4. In the `particle-dst` panel click on `Use`
 
-## How to use it
-### 1) Limits definition
+## Usage
+### 1) Define limits
 The library enable and disable DST using two limits that define the beginning and the end dates of DST in your country.
 Limits can be created using the specific type provided by the library:
 ```C++
@@ -74,7 +74,7 @@ beginning.occurrence = 1; // first week
 beginning.occurrence = -1; // last week
 ```
 
-### 2) Initialization
+### 2) Initialize the library
 To start using the library, initialize it with the two limits. The last parameter indicates the DST offset in your country.
 ```C++
 DST dst;
@@ -89,7 +89,7 @@ void setup() {
 }
 ```
 
-### 3) Usage
+### 3) Use it
 There are two methods to use this library: **manual** mode where the user application has to periodically check if the DST has changed or **automatic** mode where the library switch DST on its own.
 
 ### Manual mode
@@ -105,7 +105,7 @@ Serial.printlnf("DST: %s", enabled ? "enabled" : "disabled");
 In automatic mode the library checks every hour if DST is enabled or disabled automatically without the need of any user interaction.
 Simply activate the automatic mode passing `true` to the `automatic()` method and you're done!
 
-_**NOTE:** You have to enable the automatic mode after the initialization of the library otherwise it will don't work!_
+_**NOTE:** You have to enable the automatic mode after the initialization of the library otherwise it will not work!_
 ```C++
 dst.begin(beginning, end, 1);
 // ...
@@ -147,4 +147,4 @@ If you have some suggestions or you found a bug (*oh no!*), please send me an e-
 
 That's all folks!
 
-#### Thanks and happy coding!
+### Thanks and happy coding!
