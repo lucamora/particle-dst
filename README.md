@@ -101,7 +101,7 @@ bool enabled = dst.check();
 Serial.printlnf("DST: %s", enabled ? "enabled" : "disabled");
 ```
 
-### Automatic mode
+### Automatic mode
 In automatic mode the library checks every hour if DST is enabled or disabled automatically without the need of any user interaction.
 Simply activate the automatic mode passing `true` to the `automatic()` method and you're done!
 
