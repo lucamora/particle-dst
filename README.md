@@ -147,4 +147,4 @@ If you have some suggestions or you found a bug (*oh no!*), please send me an e-
 
 That's all folks!
 
-#### Thanks and happy coding!
+#### Thanks and happy coding!
