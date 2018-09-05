@@ -97,6 +97,16 @@ char* DST::format_limit(dst_limit_t limit, String format)
   return buf;
 }
 
+bool DST::enabled()
+{
+  return Time.isDST();
+}
+
+void DST::timezone(int zone)
+{
+  Time.zone(zone);
+}
+
 int DST::timestamp(dst_limit_t limit)
 {
   time_t ts; //timestamp
