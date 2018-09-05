@@ -118,6 +118,7 @@ dst.automatic(false); // disable automatic mode
 ```
 
 ## Other features
+### Format limits
 With particle-dst you can get the timestamp of the beginning and the end of DST in the current year:
 ```C++
 int beginning = dst.beginning();
@@ -140,6 +141,48 @@ The library supports all the [Particle format strings](https://docs.particle.io/
 - `TIME_FORMAT_DEFAULT`
 - `TIME_FORMAT_ISO8601_FULL`
 - string based on `strftime()` (docs: http://www.cplusplus.com/reference/ctime/strftime/)
+
+### DST enabled
+```C++
+bool enabled = dst.enabled();
+```
+This function returns `true` if DST is currently enabled and `false` otherwise.
+
+### Time zone
+Set the local time zone.
+```C++
+// set time zone to Central European Time
+dst.timezone(1);
+```
+
+## API
+```C++
+void begin(dst_limit_t beginning_limit, dst_limit_t end_limit, int offset);
+```
+```C++
+bool check();
+```
+```C++
+void automatic(bool enable);
+```
+```C++
+int beginning();
+```
+```C++
+char* beginning(String format);
+```
+```C++
+int end();
+```
+```C++
+char* end(String format);
+```
+```C++
+bool enabled();
+```
+```C++
+void timezone(int zone);
+```
 
 ## Help me
 I've tried to develop this library to be easy to use without having to write many lines of code for doing a simple activity.
