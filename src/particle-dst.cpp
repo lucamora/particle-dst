@@ -8,6 +8,7 @@ void DST::begin(dst_limit_t beginning_limit, dst_limit_t end_limit, int offset)
 
   // set DST offset
   Time.setDSTOffset(offset);
+  offset_seconds = offset * 3600;
 
   // create timer for automatic switching
   timer = new Timer(3600 * 1000, &DST::auto_check, *this);
@@ -45,7 +46,9 @@ bool DST::check()
   int now = Time.local();
   // calculate beginning and end limits
   int beginning = timestamp(beginning_l);
-  int end = timestamp(end_l);
+
+  // subtract offset to do the check with the current time without DST
+  int end = timestamp(end_l) - offset_seconds;
 
   // check if beginning and end are in the same year
   if (beginning < end) {

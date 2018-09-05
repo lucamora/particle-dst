@@ -35,6 +35,7 @@ class DST
   private:
     dst_limit_t beginning_l;
     dst_limit_t end_l;
+    int offset_seconds = 0;
     int timestamp(dst_limit_t limit);
     Timer *timer;
     void auto_check();
