@@ -25,7 +25,10 @@ void setup() {
   end.month = DST::months::oct;
   end.occurrence = 2;
 
+  // initialize library
   dst.begin(beginning, end, 1);
+  // set timezone
+  dst.timezone(1);
 
   Serial.printlnf("Beginning: %d, end: %d", dst.beginning(), dst.end());
   Serial.printlnf("Beginning: %s, end: %s", dst.beginning("%a, %d %B @ %R"), dst.end("%a, %d %B @ %R"));
@@ -35,7 +38,11 @@ void loop() {
   if (millis() - last_check > one_hour || last_check == 0) {
     last_check = millis();
 
+    // check and toggle DST
     bool enabled = dst.check();
-    Serial.printlnf("DST: %s", enabled ? "enabled" : "disabled");
+
+    Serial.print(Time.format(Time.local(), TIME_FORMAT_DEFAULT));
+    Serial.printf(" | DST: %s", enabled ? "on" : "off");
+    Serial.printlnf(" | enabled: %s", dst.enabled() ? "yes" : "no");
   }
 }
